@@ -1,29 +1,12 @@
 input = "hepxcrrq"
 
 next_letter = {
-    a='b',
-    b='c',
-    c='d',
-    d='e',
-    e='f',
-    f='g',
-    g='h',
-    h='j',
-    j='k',
-    k='m',
-    m='n',
-    n='p',
-    p='q',
-    q='r',
-    r='s',
-    s='t',
-    t='u',
-    u='v',
-    v='w',
-    w='x',
-    x='y',
-    y='z',
-    z='a'}
+    a='b', b='c', c='d', d='e', e='f', f='g',
+    g='h', h='j', -- skip i
+    j='k', k='m', -- skip l
+    m='n', n='p', -- skip o
+    p='q', q='r', r='s', s='t', t='u', u='v',
+    v='w', w='x', x='y', y='z', z='a'}
 
 function succ(str)
     local s = ""
