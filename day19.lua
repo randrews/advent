@@ -65,21 +65,32 @@ function part2(start, goal, rules)
     end
 
     local final_steps = nil
+    local seen = {}
+    local open = {}
+    local molecule = start
+    local step = 1
 
-    local function f(molecule, step)
+    while true do
         if finish_forms[molecule] then
-            final_steps = step
-            error()
+            break
         end
 
         local _, strs = generate(molecule, rules)
-        for _, str in ipairs(strs) do
-            f(str, step + 1)
+        for n= #strs,1,-1 do
+            local str = strs[n]
+            if not seen[str] then
+                table.insert(open, str)
+                seen[str] = step
+            elseif seen[str] > step then
+                seen[str] = step
+            end
         end
+
+        molecule = table.remove(open)
+        step = seen[molecule] + 1
     end
 
-    local err = pcall(f,start, 1)
-    return final_steps
+    return step
 end
 
 local rules = {
